@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1761403916 source:c:\users\user\documents\c++ utn\practica3\tpgrupal\src\funciones.cpp
+
+1761680963 source:c:\users\user\documents\c++ utn\practica3\tpgrupal\main.cpp
+	<iostream>
+	"funciones.h"
+	<cstdlib>
+	<ctime>
+
+1762104748 c:\users\user\documents\c++ utn\practica3\tpgrupal\include\funciones.h
+
+1761928164 source:c:\users\user\documents\c++ utn\practica3\tpgrupal\funciones.cpp
+	<iostream>
+	"funciones.h"
+	<cstdlib>
+
+1762613658 source:c:\users\usuario\downloads\tpgrupal-main\main.cpp
+	<iostream>
+	"funciones.h"
+	<cstdlib>
+	<ctime>
+
+1762612814 c:\users\usuario\downloads\tpgrupal-main\include\funciones.h
+	<iostream>
+
+1762567554 source:c:\users\usuario\downloads\tpgrupal-main\src\funciones.cpp
+
+1762613668 source:c:\users\usuario\downloads\tpgrupal-main\funciones.cpp
+	<iostream>
+	"funciones.h"
+	<cstdlib>
+
