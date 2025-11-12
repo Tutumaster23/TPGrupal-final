@@ -1,5 +1,6 @@
 #include <iostream>
 #include "funciones.h"
+#include "funciones2.h"
 #include <cstdlib>
 #include <ctime>
 using namespace std;
@@ -30,6 +31,7 @@ int main(){
     }
     case 2:
         /// PARTIDA DOS JUGADORES
+        jugarDosJugadores(maxJugador, maxPuntaje);
         break;
     case 3:
         /// VER PUNTAJE MAXIMO

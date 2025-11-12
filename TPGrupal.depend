@@ -30,19 +30,29 @@
 	"funciones.h"
 	<cstdlib>
 
-1762911003 source:c:\users\paco\documents\facultad\programacion i\segunda cursada\tpi del grupo\tpgrupal-final-main\funciones.cpp
+1762911727 source:c:\users\paco\documents\facultad\programacion i\segunda cursada\tpi del grupo\tpgrupal-final-main\funciones.cpp
 	<iostream>
 	"funciones.h"
 	<cstdlib>
 
-1762910111 c:\users\paco\documents\facultad\programacion i\segunda cursada\tpi del grupo\tpgrupal-final-main\include\funciones.h
+1762911727 c:\users\paco\documents\facultad\programacion i\segunda cursada\tpi del grupo\tpgrupal-final-main\include\funciones.h
 	<iostream>
 
-1762910189 source:c:\users\paco\documents\facultad\programacion i\segunda cursada\tpi del grupo\tpgrupal-final-main\main.cpp
+1762979082 source:c:\users\paco\documents\facultad\programacion i\segunda cursada\tpi del grupo\tpgrupal-final-main\main.cpp
 	<iostream>
 	"funciones.h"
+	"funciones2.h"
 	<cstdlib>
 	<ctime>
 
-1762614447 source:c:\users\paco\documents\facultad\programacion i\segunda cursada\tpi del grupo\tpgrupal-final-main\src\funciones.cpp
+1762911727 source:c:\users\paco\documents\facultad\programacion i\segunda cursada\tpi del grupo\tpgrupal-final-main\src\funciones.cpp
+
+1762979809 source:c:\users\paco\documents\facultad\programacion i\segunda cursada\tpi del grupo\tpgrupal-final-main\funciones2.cpp
+	<iostream>
+	"funciones.h"
+	"funciones2.h"
+	<cstdlib>
+
+1762979729 c:\users\paco\documents\facultad\programacion i\segunda cursada\tpi del grupo\tpgrupal-final-main\include\funciones2.h
+	<iostream>
 
