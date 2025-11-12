@@ -3,11 +3,7 @@
 #include <cstdlib>
 using namespace std;
 
-/// Puntaje maximo y nombre en 0
-string maxJugador = "";
-int maxPuntaje = 0;
-
-///funcion que muestra el menu
+/// FUNCION PARA MOSTRAR EL MENU
 void mostrarMenu(){
     cout << "----------------------------------------------------------" <<endl;
     cout << "*****************BIENVENIDO A GENERALA*****************"<< endl;
@@ -19,130 +15,137 @@ void mostrarMenu(){
     cout << "5. Salir" << endl;
     cout << "----------------------------------------------------------" <<endl;
 }
-
+/// FUNCION PARA HACER UNA PAUSA Y LIMPIAR PANTALLA
 void limpiarPantalla(){
     system ("pause");
     system ("cls");
 }
 
-///jugar un jugador
-void jugarUnJugador(int &puntajeTotal,string &nombre){
+/// FUNCION PRINCIPAL PARA MODO UN JUGADOR
+void jugarUnJugador(int &puntajeTotal, string &nombre, string &maxJugador, int &maxPuntaje){
     cout << "Ingrese su nombre: ";
-    cin >> nombre;
+    cin >> nombre; /// LE PEDIMOS EL NOMBRE Y LO MANDAMOS COMO REFERENCIA
 
-    int cantDados = 5;
-    int dados[cantDados];
+    int cantDados = 5; /// VARIABLE PARA CANT. DE DADOS
+    int dados[cantDados]; /// VEC CON EL TAMAÑO DE LOS DADOS QUE NECESITAMOS
 
-    //bucle rondas
-    for(int ronda = 1; ronda <=1; ronda++){
+    /// FOR PARA LA CANT. DE RONDAS
+    for(int ronda = 1; ronda <=10; ronda++){
 
-        //mostramos info
+        /// INFO VISIBLE PARA EL USUARIO
         cout << "----------------------------------------------------------" <<endl;
         cout << "Turno de: " << nombre << " | Ronda : " << ronda << " | Puntaje total: " << puntajeTotal << " PTS." << endl;
 
-        int numeroLanzamiento = 1;
+        int numeroLanzamiento = 1; /// VARIABLE PARA GUARDAR QUE LANZAMIENTOS ES
         bool jugadorPlantado = false;
-        char respuestaJugador;
+        char respuestaJugador, respuestaJugador2;
 
-        //mientras el lanzamiento < 3 y el jugador no este plantado
+        /// MIENTRAS EL LANZAMIENTO SEA < 3 Y EL JUGADOR NO ESTE PLANTADO SIGUE
         while(numeroLanzamiento <= 3 && !jugadorPlantado){
-
+        /// SI ES 1 SE TIRAM DADOS Y SE MUESTRAM
             if(numeroLanzamiento == 1){
                 tirarDados(dados, cantDados);
                 mostrarDados(dados, cantDados, 1);
             } else {
                 cout << "CONTINUAR LANZANDO? (S/N)";
-                cin >> respuestaJugador;
+                cin >> respuestaJugador; /// PREGUNTO SI QUIERE SEGUIR TIRANDO ALGUN DADO
 
-                if(respuestaJugador == 'S' || respuestaJugador == 's'){
+                cout << "DESEA TIRAR TODOS? ";
+                cin >> respuestaJugador2;
+
+                if (respuestaJugador2 == 'S' || respuestaJugador2 == 's' ) {
+                tirarDados(dados, cantDados);
+                mostrarDados(dados, cantDados, 1);
+                }
+
+                if(respuestaJugador == 'S' || respuestaJugador == 's' && (!(respuestaJugador2 == 'S' || respuestaJugador2 == 's' ))){
                     int cantidadARelanzar;
                     cout << "CUANTOS DADOS VOLVES A TIRAR?: ";
-                    cin >> cantidadARelanzar;
+                    cin >> cantidadARelanzar; /// PIDO CUANTOS QUIERE TIRAR
 
-                    for (int i=0; i< cantidadARelanzar; i++){
+                    for (int i=0; i < cantidadARelanzar; i++){
                         int posicionDado;
                         cout << "CUAL DADO?: ";
-                        cin >> posicionDado;
+                        cin >> posicionDado; /// PREGUNTO CUAL DE TODOS
 
-                        int indice = posicionDado - 1;
+                        int indice = posicionDado - 1; /// HAGO UN -1, PQ EL VEC VA DE 0 A 4
 
-                        if(indice >= 0 && indice < cantDados){
-                            dados[indice] = 1+ (rand()% 6);
+                        if(indice >= 0 && indice < cantDados){ /// SI LA POSICION ES IGUAL O MAYOR A CERO Y MENOR A CANTDADOS (QUE ES IGUAL A 5)
+                            dados[indice] = 1+ (rand()% 6); /// SE GENERA UN DADO ALETORIO NUEVO
                         }
                     }
 
-                    mostrarDados(dados, cantDados, numeroLanzamiento);
+                    mostrarDados(dados, cantDados, numeroLanzamiento); /// MUESTRO LOS NUEVOS DADOS
 
                 } else{
-                    //si la respuesta es N
+                    /// SI LA RESPUES ES N, CERRAMOS EL CICLO
                     jugadorPlantado = true;
                 }
             }
             if(!jugadorPlantado) {
-                numeroLanzamiento++;
+                numeroLanzamiento++; /// CONT++ PARA QUE NO SE PASE DE LOS 3 PERMITIDOS
             }
         }
-        ///logica del puntaje
+        /// LOGICA DEL PUNTAJE
         int conteo[6];
-        contarDados(dados, conteo);
+        contarDados(dados, conteo); /// LLAMO LA FUNCION CONTAR DADOS, PARA CONTAR LOS DADOS RECIBIDOS
 
-        int puntajeRonda = 0;
-        combinaciones(conteo,puntajeRonda);
+        int puntajeRonda = 0; /// INICIALIZO LA VARIBLE EN CERO
+        combinaciones(conteo,puntajeRonda); /// MANDO EL CONTEO Y PUNTAJE COMO PARAMETROS, PARA QUE CUENTE Y HAGA LAS COMBINACIONES, PARA QUE TAMBIEN ME AÑADA LOS PUNTOS CORRESPONDIENTES
 
         cout << "----------------------------------------------------------" <<endl;
         cout << "FIN DE LOS LANZAMIENTOS" << endl;
         cout << "PUNTAJE DE LA RONDA: " << puntajeRonda << " PTS." << endl;
-        puntajeTotal += puntajeRonda;
+        puntajeTotal += puntajeRonda; /// GUARDO EL PUNTAJE TOTAL EN UNA VARIBLE, ASI LO DEVUELVO COMO REFERENCIA
 
         cout << "Presiona 'c' y luego enter para continuar" << endl;
 
         char pausa;
-        cin >> pausa; // para frenar el programa espera un input
+        cin >> pausa; /// INPUT PARA VOLVER A JUGAR, SIN TENER QUE CERRAR EL PROGRAMA
         system("cls");
     }
 
-    //fin de juego
+    /// FIN DEL JUEGO
     cout << "----------------------------------------------------------" <<endl;
     cout << "FIN DEL JUEGO"<< endl;
     cout << "Puntaje final de "<< nombre << ": " << puntajeTotal << " PTS" << endl;
-    cargarPuntaje(nombre, puntajeTotal);
+    cargarPuntaje(nombre, puntajeTotal, maxJugador, maxPuntaje); /// CARGO EL PUNTAJE PARA VER SI ES EL MAS ALTO Y GAURDARLO JUNTO CON EL NOMBRE
 
     limpiarPantalla();
 }
 
-///funcion para tirar dados
+/// FUNCION PARA TIRAR DADOS
 void tirarDados(int dados[], int cantidad){
     for (int i=0; i< cantidad; i++){
-        dados[i] = 1+ (rand()% 6); //con modulo el resultado siempre es entre 0 y 5, se suma uno para q quiede entre 0 y 6
+        dados[i] = (rand()% 6) + 1; /// FOR PARA GENERAR DADOS ALEATORIOS
     }
 }
-
+/// FUNCION PARA CONTAR DADOS
 void contarDados(int dados[], int conteo[]){
     for ( int i = 0; i < 6; i++){
-        conteo [i]=0;
+        conteo [i]=0; /// inicializo el conteo en 0
     }
 
-    //recorrer los 5 dados
     for(int i = 0; i<5; i++){
         int valorDado = dados[i];
-
+                                 ///CUENTO LAS VECES QUE SE REPITE UN NUMERO
         conteo[valorDado -1]++;
     }
 }
 
-///funcion para mostrar los 5 dados
+/// FUNCION PARA MOSTRAR DADOS EN PANTALLA
 void mostrarDados(int dados[], int cantidad, int numLanzamiento){
     cout << "Lanzamiento " << numLanzamiento << endl;
     cout << "Tus dados: ";
 
     for(int i = 0; i<cantidad; i++){
-        cout << dados[i] << " ";
+        cout << dados[i] << " "; /// FOR PARA RECORRER EL VEC Y MOSTRAR LOS DADOS
     }
     cout << endl;
 
 }
 
-/// funcion para calcular las combinaciones y determinar puntaje de ronda
+/// FUNCION PARA CALCULAR LAS COMBINACIONES Y DETERMINAR EL PUNTAJE
 void combinaciones(int conteo[], int &puntajeRonda){
     bool hayGenerala = false;
     bool hayPoker = false;
@@ -150,14 +153,14 @@ void combinaciones(int conteo[], int &puntajeRonda){
     bool hayTres = false;
     bool hayEscalera1 = (conteo[0] == 1 && conteo[1] == 1 && conteo[2] == 1 && conteo[3] == 1 && conteo[4] == 1);
     bool hayEscalera2 = (conteo[1] == 1 && conteo[2] == 1 && conteo[3] == 1 && conteo[4] == 1 && conteo[5] == 1);
-    // Se utilizan booleanos para determinar que combinacion se alcanzo
+    /// BOOL PARA DETERMINAR QUE COMBINACION DA TRUE
     for(int i = 0; i<6; i++){
         if (conteo[i]== 5) hayGenerala = true;
         if (conteo[i]== 4) hayPoker = true;
         if (conteo[i]== 2) hayDos = true;
         if (conteo[i]== 3) hayTres = true;
        }
-    // Si se alcanza una de las combinaciones se añade al puntaje
+    /// SI DA TRUE ALGUNA COMBINACION SE AÑADE AL PUNTAJE
     if(hayGenerala){
         puntajeRonda += 50;
     } else if(hayPoker){
@@ -166,24 +169,23 @@ void combinaciones(int conteo[], int &puntajeRonda){
         puntajeRonda += 30;
     } else if (hayEscalera1 || hayEscalera2){
         puntajeRonda += 25;
-    } else { // Si no se da ninguna combinacion se utiliza los juegos de dados
+    } else { /// SI NO HAY COMBINACION POSIBLE, SE UTILIZA LOS JUEGOS DE DADOS
     for(int i = 0; i<6; i++){
         puntajeRonda += conteo[i]*(i+1);
     }
     }
 }
 
-/// funcion para determinar cual es el puntaje mas alto de todas las partidas jugadas al momento
-void cargarPuntaje(string nombre, int puntajeTotal){
+/// FUNCION PARA SABER EL PUNTAJE MAS ALTO DE TODAS LAS PARTIDAS JUGADAS
+void cargarPuntaje(string nombre, int puntajeTotal, string &maxJugador, int &maxPuntaje){
     if (puntajeTotal > maxPuntaje){
         maxPuntaje = puntajeTotal;
         maxJugador = nombre;
     }
-
 }
 
-/// funcion que muestra los puntajes y si no hay informa
-void mostrarPuntaje() {
+/// FUNCION QUE MUESTRA LOS PUNTAJES
+void mostrarPuntaje(string maxJugador, int maxPuntaje) {
     cout << "************************* Puntaje ************************" << endl;
     cout << "----------------------------------------------------------" <<endl;
     cout << endl;
@@ -195,7 +197,7 @@ void mostrarPuntaje() {
     limpiarPantalla();
 }
 
-///funcion que muestra los creditos, nombre apellido y legajo
+/// FUNCION QUE MUESTRA LOS CREDITOS
 void mostrarCreditos(){
     cout << "************************* CREDITOS ************************" << endl;
     cout << "----------------------------------------------------------" <<endl;
@@ -208,9 +210,4 @@ void mostrarCreditos(){
     cout << "- FRANCISCO SACKMANN - LEGAJO: " << endl;
     cout << "- FRANCO PACHECO - LEGAJO: " << endl;
     cout << "- RODRIGO GODOY- LEGAJO: " << endl;
-
-
-
 }
-
-

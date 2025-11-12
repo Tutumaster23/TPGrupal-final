@@ -4,11 +4,17 @@
 #include <ctime>
 using namespace std;
 
-int main()
-{
+int main(){
+
     srand(time(NULL)); ///PARA QUE RAND GENERE NUMEROS ALEATORIOS TODAS LAS PARTIDAS
 
     int opcion;
+
+    string maxJugador = "";
+    int maxPuntaje = 0;
+    int puntajeTotal = 0;
+
+    string nombre;
 
     ///MOSTRAR MENU
     do{
@@ -18,31 +24,27 @@ int main()
         system ("cls");
         switch(opcion){
     case 1: {
-        //NUEVA PARTIDA(1 JUGADOR)
-        system ("cls");
-        // se declara el puntaje total y nombre en 0 para resetear la ronda
-        int puntajeTotal = 0;
-        string nombre = "";
-        jugarUnJugador(puntajeTotal, nombre);
+        /// PARTIDA UN JUGADOR
+        jugarUnJugador(puntajeTotal, nombre, maxJugador, maxPuntaje);
         break;
     }
     case 2:
-        //NUEVA PARTIDA(2 JUGADORES)
+        /// PARTIDA DOS JUGADORES
         break;
     case 3:
-        //VER PUNTUACION MAS ALTA
-        mostrarPuntaje();
+        /// VER PUNTAJE MAXIMO
+        mostrarPuntaje(maxJugador, maxPuntaje);
         break;
     case 4:
-        //VER CREDITOS
+        /// VER CREDITOS
         mostrarCreditos();
         break;
     case 5:
-        //SALIR
+        /// SALIR
         cout << "Saliendo del juego..." << endl;
         break;
     default:
-        //OPCION NO VALIDA
+        /// OPCION NO VALIDA
         cout << "Opcion no valida, intentalo de nuevo" << endl;
 
         break;
