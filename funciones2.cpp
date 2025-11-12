@@ -28,9 +28,33 @@ void jugarDosJugadores(string &maxJugador, int &maxPuntaje) {
         cout << "GANADOR: " << nombreJ1;
     else if (puntajeJ2 > puntajeJ1)
         cout << "GANADOR: " << nombreJ2;
-    else
-        cout << "EMPATE";
+    else {
+        cout << "EMPATE!! SE DEFINE POR SUERTE";
 
+        bool empate = true;
+
+        while(empate) {
+            int dado1 = 1 + rand() % 6;
+            int dado2 = 1 + rand() % 6;
+
+            cout << nombreJ1 << " tira un " << dado1 << endl;
+            cout << nombreJ2 << " tira un " << dado2 << endl;
+
+            if (dado1 > dado2) {
+                cout << "¡Gana " << nombreJ1 << "! La suerte es loca." << endl;
+
+                empate = false;
+            }
+            else if (dado2 > dado1) {
+                cout << "¡Gana " << nombreJ2 << "! La suerte es loca." << endl;
+
+                empate = false;
+            }
+            else {
+                cout << "¡Empate otra vez! Tiran de nuevo..." << endl;
+            }
+        }
+    }
     cout << "----------------------------------------------------------\n";
     limpiarPantalla();
 }
@@ -62,8 +86,10 @@ void jugarUnJugador2(int &puntajeTotal, string &nombre, string &maxJugador, int 
                 cout << "CONTINUAR LANZANDO? (S/N)";
                 cin >> respuestaJugador; /// PREGUNTO SI QUIERE SEGUIR TIRANDO ALGUN DADO
 
+                 if (!(respuestaJugador == 'N' || respuestaJugador2 == 'n')) {
                 cout << "DESEA TIRAR TODOS? ";
                 cin >> respuestaJugador2;
+                }
 
                 if (respuestaJugador2 == 'S' || respuestaJugador2 == 's' ) {
                 tirarDados(dados, cantDados);
@@ -103,7 +129,7 @@ void jugarUnJugador2(int &puntajeTotal, string &nombre, string &maxJugador, int 
         contarDados(dados, conteo); /// LLAMO LA FUNCION CONTAR DADOS, PARA CONTAR LOS DADOS RECIBIDOS
 
         int puntajeRonda = 0; /// INICIALIZO LA VARIBLE EN CERO
-        combinaciones(conteo,puntajeRonda); /// MANDO EL CONTEO Y PUNTAJE COMO PARAMETROS, PARA QUE CUENTE Y HAGA LAS COMBINACIONES, PARA QUE TAMBIEN ME AÑADA LOS PUNTOS CORRESPONDIENTES
+        combinaciones(conteo,puntajeRonda,numeroLanzamiento); /// MANDO EL CONTEO Y PUNTAJE COMO PARAMETROS, PARA QUE CUENTE Y HAGA LAS COMBINACIONES, PARA QUE TAMBIEN ME AÑADA LOS PUNTOS CORRESPONDIENTES
 
         cout << "----------------------------------------------------------" <<endl;
         cout << "FIN DE LOS LANZAMIENTOS" << endl;

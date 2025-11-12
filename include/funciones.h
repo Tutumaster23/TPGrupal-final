@@ -10,7 +10,7 @@ void mostrarCreditos();
 void tirarDados(int dados[], int cantidad);
 void mostrarDados(int dados[], int cantidad, int numLanzamiento);
 void contarDados(int dados[], int conteo[]);
-void combinaciones(int conteo[], int &puntajeRonda);
+void combinaciones(int conteo[], int &puntajeRonda, int numLanzamiento);
 void cargarPuntaje (string nombre, int puntajeTotal, string &maxJugador, int &maxPuntaje);
 void mostrarPuntaje(string maxJugador, int maxPuntaje);
 

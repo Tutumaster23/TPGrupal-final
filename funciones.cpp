@@ -50,8 +50,10 @@ void jugarUnJugador(int &puntajeTotal, string &nombre, string &maxJugador, int &
                 cout << "CONTINUAR LANZANDO? (S/N)";
                 cin >> respuestaJugador; /// PREGUNTO SI QUIERE SEGUIR TIRANDO ALGUN DADO
 
+                if (!(respuestaJugador == 'N' || respuestaJugador == 'n')) {
                 cout << "DESEA TIRAR TODOS? ";
                 cin >> respuestaJugador2;
+                }
 
                 if (respuestaJugador2 == 'S' || respuestaJugador2 == 's' ) {
                 tirarDados(dados, cantDados);
@@ -91,7 +93,8 @@ void jugarUnJugador(int &puntajeTotal, string &nombre, string &maxJugador, int &
         contarDados(dados, conteo); /// LLAMO LA FUNCION CONTAR DADOS, PARA CONTAR LOS DADOS RECIBIDOS
 
         int puntajeRonda = 0; /// INICIALIZO LA VARIBLE EN CERO
-        combinaciones(conteo,puntajeRonda); /// MANDO EL CONTEO Y PUNTAJE COMO PARAMETROS, PARA QUE CUENTE Y HAGA LAS COMBINACIONES, PARA QUE TAMBIEN ME AÑADA LOS PUNTOS CORRESPONDIENTES
+
+        combinaciones(conteo,puntajeRonda,numeroLanzamiento); /// MANDO EL CONTEO Y PUNTAJE COMO PARAMETROS, PARA QUE CUENTE Y HAGA LAS COMBINACIONES, PARA QUE TAMBIEN ME AÑADA LOS PUNTOS CORRESPONDIENTES
 
         cout << "----------------------------------------------------------" <<endl;
         cout << "FIN DE LOS LANZAMIENTOS" << endl;
@@ -146,7 +149,7 @@ void mostrarDados(int dados[], int cantidad, int numLanzamiento){
 }
 
 /// FUNCION PARA CALCULAR LAS COMBINACIONES Y DETERMINAR EL PUNTAJE
-void combinaciones(int conteo[], int &puntajeRonda){
+void combinaciones(int conteo[], int &puntajeRonda, int numLanzamiento){
     bool hayGenerala = false;
     bool hayPoker = false;
     bool hayDos = false;
@@ -161,7 +164,10 @@ void combinaciones(int conteo[], int &puntajeRonda){
         if (conteo[i]== 3) hayTres = true;
        }
     /// SI DA TRUE ALGUNA COMBINACION SE AÑADE AL PUNTAJE
-    if(hayGenerala){
+    if(hayGenerala && numLanzamiento == 1){ /// GENERALA SERVIDA
+    cout << "¡¡GENERALA SERVIDA!! +60 PUNTOS" << endl;
+    puntajeRonda += 60;
+    } else if(hayGenerala){
         puntajeRonda += 50;
     } else if(hayPoker){
         puntajeRonda += 40;
@@ -205,9 +211,11 @@ void mostrarCreditos(){
     cout << "----------------------------------------------------------"<<endl;
     cout << "GRUPO 9" << endl;
     cout << "----------------------------------------------------------"<<endl;
-    cout << "INTEGRANTES DEL GRUPO: " << endl;
-    cout << "- FRANCISCO CRISTIANI - LEGAJO: " << endl;
-    cout << "- FRANCISCO SACKMANN - LEGAJO: " << endl;
+    cout << "- INTEGRANTES DEL GRUPO - " << endl;
+    cout << "- FRANCISCO CRISTIANI - LEGAJO: 32383 " << endl;
+    cout << "- FRANCISCO SACKMANN - LEGAJO: 33257 " << endl;
     cout << "- FRANCO PACHECO - LEGAJO: " << endl;
-    cout << "- RODRIGO GODOY- LEGAJO: " << endl;
+    cout << "- RODRIGO GODOY- LEGAJO: 33198 " << endl;
+
+    limpiarPantalla();
 }
