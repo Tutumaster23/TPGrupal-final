@@ -56,3 +56,28 @@
 1762979729 c:\users\paco\documents\facultad\programacion i\segunda cursada\tpi del grupo\tpgrupal-final-main\include\funciones2.h
 	<iostream>
 
+1762998568 source:c:\users\usuario\downloads\tpgrupal-final-main\funciones.cpp
+	<iostream>
+	"funciones.h"
+	<cstdlib>
+
+1762998580 c:\users\usuario\downloads\tpgrupal-final-main\include\funciones.h
+	<iostream>
+
+1762998482 source:c:\users\usuario\downloads\tpgrupal-final-main\funciones2.cpp
+	<iostream>
+	"funciones.h"
+	"funciones2.h"
+	<cstdlib>
+
+1762998406 c:\users\usuario\downloads\tpgrupal-final-main\include\funciones2.h
+	<iostream>
+
+1762998586 source:c:\users\usuario\downloads\tpgrupal-final-main\main.cpp
+	<iostream>
+	"funciones.h"
+	<cstdlib>
+	<ctime>
+
+1762984226 source:c:\users\usuario\downloads\tpgrupal-final-main\src\funciones.cpp
+

@@ -1,6 +1,5 @@
 #include <iostream>
 #include "funciones.h"
-#include "funciones2.h"
 #include <cstdlib>
 #include <ctime>
 using namespace std;
@@ -8,15 +7,11 @@ using namespace std;
 int main(){
 
     srand(time(NULL)); ///PARA QUE RAND GENERE NUMEROS ALEATORIOS TODAS LAS PARTIDAS
-
     int opcion;
-
+    int puntajeTotal = 0;
+    string nombre;
     string maxJugador = "";
     int maxPuntaje = 0;
-    int puntajeTotal = 0;
-
-    string nombre;
-
     ///MOSTRAR MENU
     do{
         mostrarMenu();
